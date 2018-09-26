@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import momentPropTypes from 'react-moment-proptypes';
 import { forbidExtraProps, mutuallyExclusiveProps, nonNegativeInteger } from 'airbnb-prop-types';
-import moment from 'moment';
 import values from 'object.values';
 import isTouchDevice from 'is-touch-device';
 
@@ -23,6 +21,8 @@ import DayOfWeekShape from '../shapes/DayOfWeekShape';
 import CalendarInfoPositionShape from '../shapes/CalendarInfoPositionShape';
 import BaseClass from '../utils/baseClass';
 
+import { moment } from '../utils/DateObj';
+
 import {
   HORIZONTAL_ORIENTATION,
   VERTICAL_SCROLLABLE,
@@ -33,7 +33,7 @@ import {
 import DayPicker from './DayPicker';
 
 const propTypes = forbidExtraProps({
-  date: momentPropTypes.momentObj,
+  date: PropTypes.object,
   onDateChange: PropTypes.func,
 
   focused: PropTypes.bool,
@@ -85,6 +85,7 @@ const propTypes = forbidExtraProps({
   dayAriaLabelFormat: PropTypes.string,
 
   isRTL: PropTypes.bool,
+  locale: PropTypes.object
 });
 
 const defaultProps = {
@@ -141,6 +142,7 @@ const defaultProps = {
   dayAriaLabelFormat: undefined,
 
   isRTL: false,
+  locale: null
 };
 
 /** @extends React.Component */
@@ -149,7 +151,7 @@ export default class DayPickerSingleDateController extends BaseClass {
     super(props);
 
     this.isTouchDevice = false;
-    this.today = moment();
+    this.today = moment().setLocale(this.props.locale);
 
     this.modifiers = {
       today: day => this.isToday(day),
@@ -299,7 +301,7 @@ export default class DayPickerSingleDateController extends BaseClass {
       });
     }
 
-    const today = moment();
+    const today = moment().setLocale(this.props.locale);
     if (!isSameDay(this.today, today)) {
       modifiers = this.deleteModifier(modifiers, this.today, 'today');
       modifiers = this.addModifier(modifiers, today, 'today');
@@ -317,7 +319,7 @@ export default class DayPickerSingleDateController extends BaseClass {
   }
 
   componentWillUpdate() {
-    this.today = moment();
+    const today = moment().setLocale(this.props.locale);
   }
 
   onDayClick(day, e) {
@@ -675,6 +677,7 @@ export default class DayPickerSingleDateController extends BaseClass {
       transitionDuration,
       verticalBorderSpacing,
       horizontalMonthPadding,
+      locale
     } = this.props;
 
     const { currentMonth, visibleDays } = this.state;
@@ -721,6 +724,7 @@ export default class DayPickerSingleDateController extends BaseClass {
         transitionDuration={transitionDuration}
         verticalBorderSpacing={verticalBorderSpacing}
         horizontalMonthPadding={horizontalMonthPadding}
+        locale={locale}
       />
     );
   }

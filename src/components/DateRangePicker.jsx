@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import { css, withStyles, withStylesPropTypes } from 'react-with-styles';
 import { Portal } from 'react-portal';
 import { forbidExtraProps } from 'airbnb-prop-types';
@@ -20,6 +19,8 @@ import BaseClass, { pureComponentAvailable } from '../utils/baseClass';
 import DateRangePickerInputController from './DateRangePickerInputController';
 import DayPickerRangeController from './DayPickerRangeController';
 import CloseButton from './CloseButton';
+
+import DateObj from '../utils/DateObj';
 
 import {
   START_DATE,
@@ -108,15 +109,16 @@ const defaultProps = {
   minimumNights: 1,
   enableOutsideDays: false,
   isDayBlocked: () => false,
-  isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+  isOutsideRange: day => !isInclusivelyAfterDay(day, new DateObj()),
   isDayHighlighted: () => false,
 
   // internationalization
-  displayFormat: () => moment.localeData().longDateFormat('L'),
+  displayFormat: () => new DateObj().localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   weekDayFormat: 'dd',
   phrases: DateRangePickerPhrases,
   dayAriaLabelFormat: undefined,
+  locale: null
 };
 
 /** @extends React.Component */
@@ -390,14 +392,15 @@ class DateRangePicker extends BaseClass {
       small,
       disabled,
       theme: { reactDates },
+      locale,
     } = this.props;
     const { dayPickerContainerStyles, isDayPickerFocused, showKeyboardShortcuts } = this.state;
 
     const onOutsideClick = (!withFullScreenPortal && withPortal)
       ? this.onOutsideClick
       : undefined;
-    const initialVisibleMonthThunk = initialVisibleMonth || (
-      () => (startDate || endDate || moment())
+    const initialVisibleMonthThunk = 
+      initialVisibleMonth || (() => (startDate || endDate || new DateObj()));
     );
 
     const closeIcon = customCloseIcon || (
@@ -472,6 +475,7 @@ class DateRangePicker extends BaseClass {
           transitionDuration={transitionDuration}
           disabled={disabled}
           horizontalMonthPadding={horizontalMonthPadding}
+          locale={locale}
         />
 
         {withFullScreenPortal && (

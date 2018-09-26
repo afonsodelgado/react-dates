@@ -1,8 +1,8 @@
-import moment from 'moment';
+import DateObj from './DateObj';
 
 import isAfterDay from './isAfterDay';
 
 export default function isInclusivelyBeforeDay(a, b) {
-  if (!moment.isMoment(a) || !moment.isMoment(b)) return false;
+  if (!DateObj.isDate(a) || !DateObj.isDate(b)) return false;
   return !isAfterDay(a, b);
 }

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import momentPropTypes from 'react-moment-proptypes';
 import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import { css, withStyles, withStylesPropTypes } from 'react-with-styles';
-import moment from 'moment';
 
 import { CalendarDayPhrases } from '../defaultPhrases';
 import getPhrasePropTypes from '../utils/getPhrasePropTypes';
@@ -11,11 +9,13 @@ import getCalendarDaySettings from '../utils/getCalendarDaySettings';
 import ModifiersShape from '../shapes/ModifiersShape';
 import BaseClass, { pureComponentAvailable } from '../utils/baseClass';
 
+import DateObj from '../utils/DateObj';
+
 import { DAY_SIZE } from '../constants';
 
 const propTypes = forbidExtraProps({
   ...withStylesPropTypes,
-  day: momentPropTypes.momentObj,
+  day: PropTypes.object,
   daySize: nonNegativeInteger,
   isOutsideDay: PropTypes.bool,
   modifiers: ModifiersShape,
@@ -32,7 +32,7 @@ const propTypes = forbidExtraProps({
 });
 
 const defaultProps = {
-  day: moment(),
+  day: new DateObj(),
   daySize: DAY_SIZE,
   isOutsideDay: false,
   modifiers: new Set(),

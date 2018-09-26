@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { forbidExtraProps, mutuallyExclusiveProps, nonNegativeInteger } from 'airbnb-prop-types';
 import { css, withStyles, withStylesPropTypes } from 'react-with-styles';
 
-import moment from 'moment';
 import throttle from 'lodash/throttle';
 import isTouchDevice from 'is-touch-device';
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -24,6 +23,8 @@ import getCalendarMonthWidth from '../utils/getCalendarMonthWidth';
 import calculateDimension from '../utils/calculateDimension';
 import getActiveElement from '../utils/getActiveElement';
 import isDayVisible from '../utils/isDayVisible';
+
+import { moment } from '../utils/DateObj';
 
 import ModifiersShape from '../shapes/ModifiersShape';
 import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
@@ -105,6 +106,7 @@ const propTypes = forbidExtraProps({
   weekDayFormat: PropTypes.string,
   phrases: PropTypes.shape(getPhrasePropTypes(DayPickerPhrases)),
   dayAriaLabelFormat: PropTypes.string,
+  locale: PropTypes.object
 });
 
 export const defaultProps = {
@@ -161,6 +163,7 @@ export const defaultProps = {
   weekDayFormat: 'dd',
   phrases: DayPickerPhrases,
   dayAriaLabelFormat: undefined,
+  locale: null
 };
 
 /** @extends React.Component */
@@ -168,7 +171,8 @@ class DayPicker extends BaseClass {
   constructor(props) {
     super(props);
 
-    const currentMonth = props.hidden ? moment() : props.initialVisibleMonth();
+    const currentMonth = props.hidden ?
+      moment().setLocale(props.locale) : props.initialVisibleMonth();
 
     let focusedDate = currentMonth.clone().startOf('month');
     if (props.getFirstFocusableDay) {
@@ -552,7 +556,7 @@ class DayPicker extends BaseClass {
   getFirstDayOfWeek() {
     const { firstDayOfWeek } = this.props;
     if (firstDayOfWeek == null) {
-      return moment.localeData().firstDayOfWeek();
+      return moment().setLocale(locale).localeData().firstDayOfWeek();
     }
 
     return firstDayOfWeek;
@@ -828,6 +832,7 @@ class DayPicker extends BaseClass {
       orientation,
       weekDayFormat,
       styles,
+      locale
     } = this.props;
     const { calendarMonthWidth } = this.state;
     const verticalScrollable = orientation === VERTICAL_SCROLLABLE;
@@ -851,7 +856,8 @@ class DayPicker extends BaseClass {
     for (let i = 0; i < 7; i += 1) {
       header.push((
         <li key={i} {...css(styles.DayPicker_weekHeader_li, { width: daySize })}>
-          <small>{moment().day((i + firstDayOfWeek) % 7).format(weekDayFormat)}</small>
+          <small>{moment().setLocale(locale).day((i + firstDayOfWeek) % 7)
+            .format(weekDayFormat)}</small>
         </li>
       ));
     }
