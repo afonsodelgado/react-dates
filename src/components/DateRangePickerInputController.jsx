@@ -77,7 +77,7 @@ const propTypes = forbidExtraProps({
   // i18n
   phrases: PropTypes.shape(getPhrasePropTypes(DateRangePickerInputPhrases)),
 
-  isRTL: PropTypes.bool,
+  isRTL: PropTypes.bool
 });
 
 const defaultProps = {
@@ -129,7 +129,7 @@ const defaultProps = {
   // i18n
   phrases: DateRangePickerInputPhrases,
 
-  isRTL: false,
+  isRTL: false
 };
 
 /** @extends React.Component */
@@ -291,7 +291,7 @@ export default class DateRangePickerInputController extends BaseClass {
       block,
       small,
       regular,
-      verticalSpacing,
+      verticalSpacing
     } = this.props;
 
     const startDateString = this.getDateString(startDate);

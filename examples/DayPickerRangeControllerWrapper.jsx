@@ -52,6 +52,7 @@ const propTypes = forbidExtraProps({
   monthFormat: PropTypes.string,
 
   isRTL: PropTypes.bool,
+  locale: PropTypes.object
 });
 
 const defaultProps = {
@@ -82,6 +83,7 @@ const defaultProps = {
   keepOpenOnDateSelect: false,
   renderCalendarInfo: null,
   isRTL: false,
+  locale: null,
   renderMonthText: null,
   renderMonthElement: null,
 

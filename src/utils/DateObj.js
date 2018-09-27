@@ -301,7 +301,7 @@ export default class DateObj {
     if (this.dataLocale) {
       return {
         firstDayOfWeek: () => this.dataLocale.options.weekStartsOn,
-        longDateFormat: formatString => this.dataLocale.formatLong(formatString),
+        longDateFormat: formatString => this.dataLocale.formatLong.date(formatString),
       };
     }
     return {

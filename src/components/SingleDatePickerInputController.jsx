@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 
-import momentPropTypes from 'react-moment-proptypes';
 import { forbidExtraProps, nonNegativeInteger } from 'airbnb-prop-types';
 import openDirectionShape from '../shapes/OpenDirectionShape';
 
@@ -14,12 +12,13 @@ import SingleDatePickerInput from './SingleDatePickerInput';
 import IconPositionShape from '../shapes/IconPositionShape';
 import DisabledShape from '../shapes/DisabledShape';
 
-import toMomentObject from '../utils/toMomentObject';
 import toLocalizedDateString from '../utils/toLocalizedDateString';
 
 import isInclusivelyAfterDay from '../utils/isInclusivelyAfterDay';
 
 import BaseClass from '../utils/baseClass';
+
+import DateObj from '../utils/DateObj';
 
 import {
   ICON_BEFORE_POSITION,
@@ -27,7 +26,7 @@ import {
 } from '../constants';
 
 const propTypes = forbidExtraProps({
-  date: momentPropTypes.momentObj,
+  date: PropTypes.object,
   onDateChange: PropTypes.func.isRequired,
 
   focused: PropTypes.bool,
@@ -68,7 +67,7 @@ const propTypes = forbidExtraProps({
   // i18n
   phrases: PropTypes.shape(getPhrasePropTypes(SingleDatePickerInputPhrases)),
 
-  isRTL: PropTypes.bool,
+  isRTL: PropTypes.bool
 });
 
 const defaultProps = {
@@ -93,8 +92,8 @@ const defaultProps = {
 
   keepOpenOnDateSelect: false,
   reopenPickerOnClearDate: false,
-  isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
-  displayFormat: () => moment.localeData().longDateFormat('L'),
+  isOutsideRange: day => !isInclusivelyAfterDay(day, new DateObj()),
+  displayFormat: () => new DateObj().localeData().longDateFormat('L'),
 
   onClose() {},
   onKeyDownArrowDown() {},
@@ -109,7 +108,7 @@ const defaultProps = {
   // i18n
   phrases: SingleDatePickerInputPhrases,
 
-  isRTL: false,
+  isRTL: false
 };
 
 /** @extends React.Component */
@@ -131,7 +130,7 @@ export default class SingleDatePickerInputController extends BaseClass {
       onFocusChange,
       onClose,
     } = this.props;
-    const newDate = toMomentObject(dateString, this.getDisplayFormat());
+    const newDate = DateObj.toDateObject(dateString, this.getDisplayFormat());
 
     const isValid = newDate && !isOutsideRange(newDate);
     if (isValid) {
@@ -217,7 +216,7 @@ export default class SingleDatePickerInputController extends BaseClass {
       block,
       small,
       regular,
-      verticalSpacing,
+      verticalSpacing
     } = this.props;
 
     const displayValue = this.getDateString(date);

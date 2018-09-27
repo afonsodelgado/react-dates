@@ -554,7 +554,7 @@ class DayPicker extends BaseClass {
   }
 
   getFirstDayOfWeek() {
-    const { firstDayOfWeek } = this.props;
+    const { firstDayOfWeek, locale } = this.props;
     if (firstDayOfWeek == null) {
       return moment().setLocale(locale).localeData().firstDayOfWeek();
     }

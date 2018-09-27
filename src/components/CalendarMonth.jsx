@@ -61,7 +61,7 @@ const propTypes = forbidExtraProps({
 });
 
 const defaultProps = {
-  month: moment(),
+  month: new DateObj(),
   horizontalMonthPadding: 13,
   isVisible: true,
   enableOutsideDays: false,

@@ -91,5 +91,6 @@ export default {
   monthFormat: PropTypes.string,
   weekDayFormat: PropTypes.string,
   phrases: PropTypes.shape(getPhrasePropTypes(DateRangePickerPhrases)),
+  locale: PropTypes.object,
   dayAriaLabelFormat: PropTypes.string,
 };

@@ -127,7 +127,7 @@ class CalendarMonthGrid extends BaseClass {
     this.onTransitionEnd = this.onTransitionEnd.bind(this);
     this.setContainerRef = this.setContainerRef.bind(this);
 
-    this.locale = moment.locale();
+    // this.locale = moment.locale();
     this.onMonthSelect = this.onMonthSelect.bind(this);
     this.onYearSelect = this.onYearSelect.bind(this);
   }
@@ -170,11 +170,11 @@ class CalendarMonthGrid extends BaseClass {
       newMonths = getMonths(initialMonth, numberOfMonths, withoutTransitionMonths);
     }
 
-    const momentLocale = moment.locale();
-    if (this.locale !== momentLocale) {
-      this.locale = momentLocale;
-      newMonths = newMonths.map(m => m.locale(this.locale));
-    }
+    // const momentLocale = moment.locale();
+    // if (this.locale !== momentLocale) {
+    //   this.locale = momentLocale;
+    //   newMonths = newMonths.map(m => m.locale(this.locale));
+    // }
 
     this.setState({
       months: newMonths,

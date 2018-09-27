@@ -70,6 +70,7 @@ const defaultProps = {
   keepOpenOnDateSelect: false,
   reopenPickerOnClearDates: false,
   isRTL: false,
+  locale: null,
 
   // navigation related props
   navPrev: null,
@@ -90,6 +91,7 @@ const defaultProps = {
   displayFormat: () => moment.localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   phrases: DateRangePickerPhrases,
+  locale: null
 };
 
 class DateRangePickerWrapper extends React.Component {

@@ -117,8 +117,8 @@ const defaultProps = {
   monthFormat: 'MMMM YYYY',
   weekDayFormat: 'dd',
   phrases: DateRangePickerPhrases,
-  dayAriaLabelFormat: undefined,
-  locale: null
+  locale: null,
+  dayAriaLabelFormat: undefined
 };
 
 /** @extends React.Component */
@@ -384,6 +384,7 @@ class DateRangePicker extends BaseClass {
       dayAriaLabelFormat,
       isRTL,
       weekDayFormat,
+      locale,
       styles,
       verticalHeight,
       transitionDuration,
@@ -391,8 +392,7 @@ class DateRangePicker extends BaseClass {
       horizontalMonthPadding,
       small,
       disabled,
-      theme: { reactDates },
-      locale,
+      theme: { reactDates }
     } = this.props;
     const { dayPickerContainerStyles, isDayPickerFocused, showKeyboardShortcuts } = this.state;
 
@@ -401,7 +401,6 @@ class DateRangePicker extends BaseClass {
       : undefined;
     const initialVisibleMonthThunk = 
       initialVisibleMonth || (() => (startDate || endDate || new DateObj()));
-    );
 
     const closeIcon = customCloseIcon || (
       <CloseButton {...css(styles.DateRangePicker_closeButton_svg)} />
@@ -471,11 +470,11 @@ class DateRangePicker extends BaseClass {
           isRTL={isRTL}
           firstDayOfWeek={firstDayOfWeek}
           weekDayFormat={weekDayFormat}
+          locale={locale}
           verticalHeight={verticalHeight}
           transitionDuration={transitionDuration}
           disabled={disabled}
           horizontalMonthPadding={horizontalMonthPadding}
-          locale={locale}
         />
 
         {withFullScreenPortal && (

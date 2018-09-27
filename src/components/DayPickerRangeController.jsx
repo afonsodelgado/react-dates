@@ -29,6 +29,7 @@ import CalendarInfoPositionShape from '../shapes/CalendarInfoPositionShape';
 import BaseClass from '../utils/baseClass';
 
 import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import {
   START_DATE,
@@ -1036,13 +1037,13 @@ export default class DayPickerRangeController extends BaseClass {
   }
 
   isFirstDayOfWeek(day) {
-    const { firstDayOfWeek } = this.props;
-    return day.day() === (firstDayOfWeek || moment.localeData().firstDayOfWeek());
+    const { firstDayOfWeek, locale } = this.props;
+    return day.day() === (firstDayOfWeek || moment().setLocale(locale).localeData().firstDayOfWeek());
   }
 
   isLastDayOfWeek(day) {
-    const { firstDayOfWeek } = this.props;
-    return day.day() === ((firstDayOfWeek || moment.localeData().firstDayOfWeek()) + 6) % 7;
+    const { firstDayOfWeek, locale } = this.props;
+    return day.day() === ((firstDayOfWeek || moment().setLocale(locale).localeData().firstDayOfWeek()) + 6) % 7;
   }
 
   render() {

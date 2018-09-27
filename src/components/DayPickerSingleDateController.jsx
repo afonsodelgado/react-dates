@@ -636,13 +636,13 @@ export default class DayPickerSingleDateController extends BaseClass {
   }
 
   isFirstDayOfWeek(day) {
-    const { firstDayOfWeek } = this.props;
-    return day.day() === (firstDayOfWeek || moment.localeData().firstDayOfWeek());
+    const { firstDayOfWeek, locale } = this.props;
+    return day.day() === (firstDayOfWeek || moment().setLocale(locale).localeData().firstDayOfWeek());
   }
 
   isLastDayOfWeek(day) {
-    const { firstDayOfWeek } = this.props;
-    return day.day() === ((firstDayOfWeek || moment.localeData().firstDayOfWeek()) + 6) % 7;
+    const { firstDayOfWeek,locale  } = this.props;
+    return day.day() === ((firstDayOfWeek || moment().setLocale(locale).localeData().firstDayOfWeek()) + 6) % 7;
   }
 
   render() {
