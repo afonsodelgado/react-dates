@@ -28,7 +28,6 @@ import DayOfWeekShape from '../shapes/DayOfWeekShape';
 import CalendarInfoPositionShape from '../shapes/CalendarInfoPositionShape';
 import BaseClass from '../utils/baseClass';
 
-import DateObj from '../utils/DateObj';
 import { moment } from '../utils/DateObj';
 
 import {
@@ -183,7 +182,7 @@ export default class DayPickerRangeController extends BaseClass {
     super(props);
 
     this.isTouchDevice = isTouchDevice();
-    this.today = new DateObj();
+    this.today = moment();
     this.modifiers = {
       today: day => this.isToday(day),
       blocked: day => this.isBlocked(day),
@@ -434,7 +433,7 @@ export default class DayPickerRangeController extends BaseClass {
       );
     }
 
-    const today = new DateObj();
+    const today = moment();
     if (!isSameDay(this.today, today)) {
       modifiers = this.deleteModifier(modifiers, this.today, 'today');
       modifiers = this.addModifier(modifiers, today, 'today');

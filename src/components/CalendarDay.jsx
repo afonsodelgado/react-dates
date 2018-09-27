@@ -42,7 +42,7 @@ const defaultProps = {
   onDayMouseEnter() {},
   onDayMouseLeave() {},
   renderDayContents: null,
-  ariaLabelFormat: 'dddd, LL',
+  ariaLabelFormat: 'dd, PP',
 
   // internationalization
   phrases: CalendarDayPhrases,
@@ -152,7 +152,7 @@ class CalendarDay extends BaseClass {
         onKeyDown={(e) => { this.onKeyDown(day, e); }}
         tabIndex={tabIndex}
       >
-        {renderDayContents ? renderDayContents(day, modifiers) : day.format('D')}
+        {renderDayContents ? renderDayContents(day, modifiers) : day.format('d')}
       </td>
     );
   }
