@@ -51,11 +51,11 @@
   },
   "homepage": "https://github.com/airbnb/react-dates#readme",
   "devDependencies": {
-    "@storybook/addon-actions": "^3.4.10",
-    "@storybook/addon-info": "^3.4.10",
-    "@storybook/addon-links": "^3.4.10",
-    "@storybook/addon-options": "^3.4.10",
-    "@storybook/react": "^3.4.10",
+    "@storybook/addon-actions": "^4.0.0-alpha.23",
+    "@storybook/addon-info": "^4.0.0-alpha.23",
+    "@storybook/addon-links": "^4.0.0-alpha.23",
+    "@storybook/addon-options": "^4.0.0-alpha.23",
+    "@storybook/react": "^4.0.0-alpha.23",
     "airbnb-js-shims": "^2.1.0",
     "aphrodite": "^2.2.2",
     "babel-cli": "^6.26.0",
@@ -111,7 +111,7 @@
   "dependencies": {
     "airbnb-prop-types": "^2.10.0",
     "consolidated-events": "^1.1.1 || ^2.0.0",
-    "date-fns": "^2.0.0-alpha.3",
+    "date-fns": "^2.0.0-alpha.18",
     "is-touch-device": "^1.0.1",
     "lodash": "^4.1.1",
     "object.assign": "^4.1.0",
@@ -125,7 +125,7 @@
     "react-with-styles-interface-css": "^4.0.2"
   },
   "peerDependencies": {
-    "date-fns": "^2.0.0-alpha.3",
+    "date-fns": "^2.0.0-alpha.18",
     "react": "^0.14 || ^15.5.4 || ^16.1.1",
     "react-dom": "^0.14 || ^15.5.4 || ^16.1.1",
     "react-with-direction": "^1.3.0"

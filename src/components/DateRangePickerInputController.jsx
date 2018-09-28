@@ -19,7 +19,7 @@ import isBeforeDay from '../utils/isBeforeDay';
 
 import BaseClass from '../utils/baseClass';
 
-import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import {
   START_DATE,
@@ -110,8 +110,8 @@ const defaultProps = {
   reopenPickerOnClearDates: false,
   withFullScreenPortal: false,
   minimumNights: 1,
-  isOutsideRange: day => !isInclusivelyAfterDay(day, new DateObj()),
-  displayFormat: () => new DateObj().localeData().longDateFormat('L'),
+  isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+  displayFormat: () => moment().localeData().longDateFormat('L'),
 
   onFocusChange() {},
   onClose() {},
@@ -166,7 +166,7 @@ export default class DateRangePickerInputController extends BaseClass {
       onDatesChange,
     } = this.props;
 
-    const endDate = DateObj.toDateObject(endDateString, this.getDisplayFormat());
+    const endDate = moment.toDateObject(endDateString, this.getDisplayFormat());
 
     const isEndDateValid = endDate
       && !isOutsideRange(endDate)
@@ -210,7 +210,7 @@ export default class DateRangePickerInputController extends BaseClass {
       disabled,
     } = this.props;
 
-    const startDate = DateObj.toDateObject(startDateString, this.getDisplayFormat());
+    const startDate = moment.toDateObject(startDateString, this.getDisplayFormat());
     const isEndDateBeforeStartDate = startDate
       && isBeforeDay(endDate, startDate.clone().add(minimumNights, 'days'));
     const isStartDateValid = startDate

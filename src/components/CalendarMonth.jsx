@@ -21,7 +21,7 @@ import ScrollableOrientationShape from '../shapes/ScrollableOrientationShape';
 import DayOfWeekShape from '../shapes/DayOfWeekShape';
 import BaseClass, { pureComponentAvailable } from '../utils/baseClass';
 
-import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import {
   HORIZONTAL_ORIENTATION,
@@ -61,7 +61,7 @@ const propTypes = forbidExtraProps({
 });
 
 const defaultProps = {
-  month: new DateObj(),
+  month: moment(),
   horizontalMonthPadding: 13,
   isVisible: true,
   enableOutsideDays: false,

@@ -20,7 +20,7 @@ import DateRangePickerInputController from './DateRangePickerInputController';
 import DayPickerRangeController from './DayPickerRangeController';
 import CloseButton from './CloseButton';
 
-import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import {
   START_DATE,
@@ -109,11 +109,11 @@ const defaultProps = {
   minimumNights: 1,
   enableOutsideDays: false,
   isDayBlocked: () => false,
-  isOutsideRange: day => !isInclusivelyAfterDay(day, new DateObj()),
+  isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => false,
 
   // internationalization
-  displayFormat: () => new DateObj().localeData().longDateFormat('L'),
+  displayFormat: () => moment().localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   weekDayFormat: 'dd',
   phrases: DateRangePickerPhrases,
@@ -400,7 +400,7 @@ class DateRangePicker extends BaseClass {
       ? this.onOutsideClick
       : undefined;
     const initialVisibleMonthThunk = 
-      initialVisibleMonth || (() => (startDate || endDate || new DateObj()));
+      initialVisibleMonth || (() => (startDate || endDate || moment()));
 
     const closeIcon = customCloseIcon || (
       <CloseButton {...css(styles.DateRangePicker_closeButton_svg)} />

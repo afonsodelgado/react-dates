@@ -1,6 +1,6 @@
 import React from 'react';
-import moment from 'moment';
 import { storiesOf } from '@storybook/react';
+import { moment } from '../src/utils/DateObj';
 
 import { VERTICAL_ORIENTATION, ANCHOR_RIGHT, OPEN_UP } from '../src/constants';
 
@@ -40,10 +40,10 @@ const TestCustomInfoPanel = () => (
 );
 
 storiesOf('DRP - Calendar Props', module)
-  .addWithInfo('default', () => (
+  .add('default', () => (
     <DateRangePickerWrapper autoFocus />
   ))
-  .addWithInfo('open up', () => (
+  .add('open up', () => (
     <div style={{ marginTop: '450px' }}>
       <DateRangePickerWrapper
         openDirection={OPEN_UP}
@@ -51,16 +51,16 @@ storiesOf('DRP - Calendar Props', module)
       />
     </div>
   ))
-  .addWithInfo('single month', () => (
+  .add('single month', () => (
     <DateRangePickerWrapper numberOfMonths={1} autoFocus />
   ))
-  .addWithInfo('3 months', () => (
+  .add('3 months', () => (
     <DateRangePickerWrapper numberOfMonths={3} autoFocus />
   ))
-  .addWithInfo('with custom day size', () => (
+  .add('with custom day size', () => (
     <DateRangePickerWrapper daySize={50} autoFocus />
   ))
-  .addWithInfo('anchored right', () => (
+  .add('anchored right', () => (
     <div style={{ float: 'right' }}>
       <DateRangePickerWrapper
         anchorDirection={ANCHOR_RIGHT}
@@ -68,13 +68,13 @@ storiesOf('DRP - Calendar Props', module)
       />
     </div>
   ))
-  .addWithInfo('vertical', () => (
+  .add('vertical', () => (
     <DateRangePickerWrapper
       orientation={VERTICAL_ORIENTATION}
       autoFocus
     />
   ))
-  .addWithInfo('vertical anchored right', () => (
+  .add('vertical anchored right', () => (
     <div style={{ float: 'right' }}>
       <DateRangePickerWrapper
         orientation={VERTICAL_ORIENTATION}
@@ -83,30 +83,30 @@ storiesOf('DRP - Calendar Props', module)
       />
     </div>
   ))
-  .addWithInfo('horizontal with portal', () => (
+  .add('horizontal with portal', () => (
     <DateRangePickerWrapper
       withPortal
       autoFocus
     />
   ))
-  .addWithInfo('horizontal with fullscreen portal', () => (
+  .add('horizontal with fullscreen portal', () => (
     <DateRangePickerWrapper withFullScreenPortal autoFocus />
   ))
-  .addWithInfo('vertical with full screen portal', () => (
+  .add('vertical with full screen portal', () => (
     <DateRangePickerWrapper
       orientation={VERTICAL_ORIENTATION}
       withFullScreenPortal
       autoFocus
     />
   ))
-  .addWithInfo('disable scroll', () => (
+  .add('disable scroll', () => (
     <div style={{ height: '100vh' }}>
       <div>This content scrolls.</div>
       <DateRangePickerWrapper preventScroll autoFocus />
     </div>
   ))
-  .addWithInfo('appended to body', () => <DateRangePickerWrapper appendToBody autoFocus />)
-  .addWithInfo('appended to body (in scrollable container)', () => (
+  .add('appended to body', () => <DateRangePickerWrapper appendToBody autoFocus />)
+  .add('appended to body (in scrollable container)', () => (
     <div style={{ height: 200, overflow: 'auto', background: 'whitesmoke' }}>
       <div>This content scrolls.</div>
       <div style={{ marginBottom: 300 }}>
@@ -114,13 +114,13 @@ storiesOf('DRP - Calendar Props', module)
       </div>
     </div>
   ))
-  .addWithInfo('does not autoclose the DayPicker on date selection', () => (
+  .add('does not autoclose the DayPicker on date selection', () => (
     <DateRangePickerWrapper
       keepOpenOnDateSelect
       autoFocus
     />
   ))
-  .addWithInfo('with custom month navigation', () => (
+  .add('with custom month navigation', () => (
     <DateRangePickerWrapper
       navPrev={<CustomMonthNav>&#8249;</CustomMonthNav>}
       navNext={<CustomMonthNav style={{ left: 48 }}>&#8250;</CustomMonthNav>}
@@ -128,7 +128,7 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('vertical with custom month navigation', () => (
+  .add('vertical with custom month navigation', () => (
     <DateRangePickerWrapper
       orientation={VERTICAL_ORIENTATION}
       navPrev={<CustomMonthNav>&#8249;</CustomMonthNav>}
@@ -136,20 +136,20 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('with outside days enabled', () => (
+  .add('with outside days enabled', () => (
     <DateRangePickerWrapper
       numberOfMonths={1}
       enableOutsideDays
       autoFocus
     />
   ))
-  .addWithInfo('with month specified on open', () => (
+  .add('with month specified on open', () => (
     <DateRangePickerWrapper
       initialVisibleMonth={() => moment().add(10, 'months')}
       autoFocus
     />
   ))
-  .addWithInfo('with info panel default', () => (
+  .add('with info panel default', () => (
     <DateRangePickerWrapper
       renderCalendarInfo={() => (
         <TestCustomInfoPanel />
@@ -157,7 +157,7 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('with info panel before', () => (
+  .add('with info panel before', () => (
     <DateRangePickerWrapper
       calendarInfoPosition="before"
       renderCalendarInfo={() => (
@@ -166,7 +166,7 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('with info panel after', () => (
+  .add('with info panel after', () => (
     <DateRangePickerWrapper
       calendarInfoPosition="after"
       renderCalendarInfo={() => (
@@ -175,7 +175,7 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('with info panel bottom', () => (
+  .add('with info panel bottom', () => (
     <DateRangePickerWrapper
       calendarInfoPosition="bottom"
       renderCalendarInfo={() => (
@@ -184,7 +184,7 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('with info panel top', () => (
+  .add('with info panel top', () => (
     <DateRangePickerWrapper
       calendarInfoPosition="top"
       renderCalendarInfo={() => (
@@ -193,13 +193,13 @@ storiesOf('DRP - Calendar Props', module)
       autoFocus
     />
   ))
-  .addWithInfo('with keyboard shortcuts panel hidden', () => (
+  .add('with keyboard shortcuts panel hidden', () => (
     <DateRangePickerWrapper
       hideKeyboardShortcutsPanel
       autoFocus
     />
   ))
-  .addWithInfo('with RTL support (and anchor right)', () => (
+  .add('with RTL support (and anchor right)', () => (
     <div style={{ float: 'right' }}>
       <DateRangePickerWrapper
         anchorDirection={ANCHOR_RIGHT}
@@ -208,35 +208,34 @@ storiesOf('DRP - Calendar Props', module)
       />
     </div>
   ))
-  .addWithInfo('vertical with RTL support', () => (
+  .add('vertical with RTL support', () => (
     <DateRangePickerWrapper
       orientation={VERTICAL_ORIENTATION}
       isRTL
       autoFocus
     />
   ))
-  .addWithInfo('with custom first day of week', () => (
+  .add('with custom first day of week', () => (
     <DateRangePickerWrapper
       firstDayOfWeek={3}
       autoFocus
     />
   ))
-  .addWithInfo('with onClose handler', () => (
+  .add('with onClose handler', () => (
     <DateRangePickerWrapper
       onClose={({ startDate, endDate }) => alert(`onClose: startDate = ${startDate}, endDate = ${endDate}`)}
       autoFocus
     />
   ))
-  .addWithInfo('with no animation', () => (
+  .add('with no animation', () => (
     <DateRangePickerWrapper
       transitionDuration={0}
       autoFocus
     />
   ))
-  .addWithInfo('with custom vertical spacing', () => (
+  .add('with custom vertical spacing', () => (
     <DateRangePickerWrapper
       verticalSpacing={0}
       autoFocus
     />
   ));
-

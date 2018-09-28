@@ -9,7 +9,7 @@ import getCalendarDaySettings from '../utils/getCalendarDaySettings';
 import ModifiersShape from '../shapes/ModifiersShape';
 import BaseClass, { pureComponentAvailable } from '../utils/baseClass';
 
-import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import { DAY_SIZE } from '../constants';
 
@@ -32,7 +32,7 @@ const propTypes = forbidExtraProps({
 });
 
 const defaultProps = {
-  day: new DateObj(),
+  day: moment(),
   daySize: DAY_SIZE,
   isOutsideDay: false,
   modifiers: new Set(),

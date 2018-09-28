@@ -1,10 +1,9 @@
 /* eslint-disable react/no-unused-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
-import momentPropTypes from 'react-moment-proptypes';
 import { forbidExtraProps } from 'airbnb-prop-types';
-import moment from 'moment';
 import omit from 'lodash/omit';
+import { moment } from '../src/utils/DateObj';
 
 import DayPickerSingleDateController from '../src/components/DayPickerSingleDateController';
 
@@ -16,7 +15,7 @@ import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
 const propTypes = forbidExtraProps({
   // example props for the demo
   autoFocus: PropTypes.bool,
-  initialDate: momentPropTypes.momentObj,
+  initialDate: PropTypes.object,
   showInput: PropTypes.bool,
 
   keepOpenOnDateSelect: PropTypes.bool,

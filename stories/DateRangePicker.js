@@ -1,7 +1,9 @@
 import React from 'react';
-import moment from 'moment';
-import momentJalaali from 'moment-jalaali';
+// import moment from 'moment';
+// import momentJalaali from 'moment-jalaali';
 import { storiesOf } from '@storybook/react';
+// import DateObj from '../src/utils/DateObj';
+
 import {
   VERTICAL_ORIENTATION,
 } from '../src/constants';
@@ -53,13 +55,13 @@ class TestWrapper extends React.Component {
 }
 
 storiesOf('DateRangePicker (DRP)', module)
-  .addWithInfo('default', () => (
+  .add('default', () => (
     <DateRangePickerWrapper />
   ))
-  .addWithInfo('hidden with display: none', () => (
+  .add('hidden with display: none', () => (
     <TestWrapper />
   ))
-  .addWithInfo('as part of a form', () => (
+  .add('as part of a form', () => (
     <div>
       <DateRangePickerWrapper />
       <TestInput placeholder="Input 1" />
@@ -67,36 +69,20 @@ storiesOf('DateRangePicker (DRP)', module)
       <TestInput placeholder="Input 3" />
     </div>
   ))
-  .addWithInfo('non-english locale', () => {
-    moment.locale('zh-cn');
-    return (
-      <DateRangePickerWrapper
-        showClearDates
-        startDatePlaceholderText="入住日期"
-        endDatePlaceholderText="退房日期"
-        monthFormat="YYYY[年]MMMM"
-        phrases={{
-          closeDatePicker: '关闭',
-          clearDates: '清除日期',
-        }}
-      />
-    );
-  })
-  .addWithInfo('non-english locale (Persian)', () => {
-    moment.locale('fa');
-    momentJalaali.loadPersian({ dialect: 'persian-modern', usePersianDigits: true });
-    return (
-      <DateRangePickerWrapper
-        isRTL
-        stateDateWrapper={momentJalaali}
-        startDatePlaceholderText="تاریخ شروع"
-        endDatePlaceholderText="تاریخ پایان"
-        renderMonthText={month => momentJalaali(month).format('jMMMM jYYYY')}
-        renderDayContents={day => momentJalaali(day).format('jD')}
-      />
-    );
-  })
-  .addWithInfo('vertical with custom height', () => (
+  .add('non-english locale', () => (
+    <DateRangePickerWrapper
+      showClearDates
+      startDatePlaceholderText="入住日期"
+      endDatePlaceholderText="退房日期"
+      monthFormat="YYYY[年]MMMM"
+      phrases={{
+        closeDatePicker: '关闭',
+        clearDates: '清除日期',
+      }}
+      locale="zh-cn"
+    />
+  ))
+  .add('vertical with custom height', () => (
     <DateRangePickerWrapper
       orientation={VERTICAL_ORIENTATION}
       verticalHeight={568}

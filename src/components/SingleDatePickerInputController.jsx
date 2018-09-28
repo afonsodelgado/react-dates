@@ -18,7 +18,7 @@ import isInclusivelyAfterDay from '../utils/isInclusivelyAfterDay';
 
 import BaseClass from '../utils/baseClass';
 
-import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import {
   ICON_BEFORE_POSITION,
@@ -92,8 +92,8 @@ const defaultProps = {
 
   keepOpenOnDateSelect: false,
   reopenPickerOnClearDate: false,
-  isOutsideRange: day => !isInclusivelyAfterDay(day, new DateObj()),
-  displayFormat: () => new DateObj().localeData().longDateFormat('L'),
+  isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
+  displayFormat: () => moment().localeData().longDateFormat('L'),
 
   onClose() {},
   onKeyDownArrowDown() {},
@@ -130,7 +130,7 @@ export default class SingleDatePickerInputController extends BaseClass {
       onFocusChange,
       onClose,
     } = this.props;
-    const newDate = DateObj.toDateObject(dateString, this.getDisplayFormat());
+    const newDate = moment.toDateObject(dateString, this.getDisplayFormat());
 
     const isValid = newDate && !isOutsideRange(newDate);
     if (isValid) {

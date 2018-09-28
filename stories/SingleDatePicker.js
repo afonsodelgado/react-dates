@@ -1,7 +1,6 @@
 import React from 'react';
-import moment from 'moment';
-import momentJalaali from 'moment-jalaali';
 import { storiesOf } from '@storybook/react';
+import DateObj from '../src/utils/DateObj';
 import {
   VERTICAL_ORIENTATION,
 } from '../src/constants';
@@ -9,7 +8,7 @@ import {
 import SingleDatePickerWrapper from '../examples/SingleDatePickerWrapper';
 
 const TestInput = props => (
-  <div style={{ marginTop: 16 }} >
+  <div style={{ marginTop: 16 }}>
     <input
       {...props}
       type="text"
@@ -25,41 +24,39 @@ const TestInput = props => (
 );
 
 storiesOf('SingleDatePicker (SDP)', module)
-  .addWithInfo('default', () => (
+  .add('default', () => (
     <SingleDatePickerWrapper />
   ))
-  .addWithInfo('as part of a form', () => (
+  .add('as part of a form', () => (
     <div>
       <SingleDatePickerWrapper />
       <TestInput placeholder="Input 1" />
       <TestInput placeholder="Input 2" />
       <TestInput placeholder="Input 3" />
     </div>
-   ))
-  .addWithInfo('non-english locale (Chinese)', () => {
-    moment.locale('zh-cn');
-    return (
-      <SingleDatePickerWrapper
-        placeholder="入住日期"
-        monthFormat="YYYY[年]MMMM"
-        phrases={{
-          closeDatePicker: '关闭',
-          clearDate: '清除日期',
-        }}
-      />
-    );
-  })
-  .addWithInfo('non-english locale (Persian)', () => {
-    moment.locale('fa');
-    return (
-      <SingleDatePickerWrapper
-        placeholder="تقویم فارسی"
-        renderMonthText={month => momentJalaali(month).format('jMMMM jYYYY')}
-        renderDayContents={day => momentJalaali(day).format('jD')}
-      />
-    );
-  })
-  .addWithInfo('vertical with custom height', () => (
+  ))
+  .add('non-english locale (Chinese)', () => (
+    <SingleDatePickerWrapper
+      placeholder="入住日期"
+      monthFormat="YYYY[年]MMMM"
+      phrases={{
+        closeDatePicker: '关闭',
+        clearDate: '清除日期',
+      }}
+      locale="zh-cn"
+    />
+  ))
+  // .add('non-english locale (Persian)', () => {
+
+  //   return (
+  //     <SingleDatePickerWrapper
+  //       placeholder="تقویم فارسی"
+  //       renderMonthText={month => momentJalaali(month).format('jMMMM jYYYY')}
+  //       renderDayContents={day => momentJalaali(day).format('jD')}
+  //     />
+  //   );
+  // })
+  .add('vertical with custom height', () => (
     <SingleDatePickerWrapper
       orientation={VERTICAL_ORIENTATION}
       verticalHeight={568}

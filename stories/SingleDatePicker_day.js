@@ -1,6 +1,6 @@
 import React from 'react';
-import moment from 'moment';
 import { storiesOf } from '@storybook/react';
+import { moment } from '../src/utils/DateObj';
 
 import isInclusivelyAfterDay from '../src/utils/isInclusivelyAfterDay';
 import isSameDay from '../src/utils/isSameDay';
@@ -19,43 +19,42 @@ const datesList = [
 ];
 
 storiesOf('SDP - Day Props', module)
-  .addWithInfo('default', () => (
+  .add('default', () => (
     <SingleDatePickerWrapper autoFocus />
   ))
-  .addWithInfo('allows all days, including past days', () => (
+  .add('allows all days, including past days', () => (
     <SingleDatePickerWrapper
       isOutsideRange={() => false}
       autoFocus
     />
   ))
-  .addWithInfo('allows next two weeks only', () => (
+  .add('allows next two weeks only', () => (
     <SingleDatePickerWrapper
-      isOutsideRange={day =>
-        !isInclusivelyAfterDay(day, moment()) ||
-        isInclusivelyAfterDay(day, moment().add(2, 'weeks'))
+      isOutsideRange={day => !isInclusivelyAfterDay(day, moment())
+        || isInclusivelyAfterDay(day, moment().add(2, 'weeks'))
       }
       autoFocus
     />
   ))
-  .addWithInfo('with some blocked dates', () => (
+  .add('with some blocked dates', () => (
     <SingleDatePickerWrapper
       isDayBlocked={day1 => datesList.some(day2 => isSameDay(day1, day2))}
       autoFocus
     />
   ))
-  .addWithInfo('with some highlighted dates', () => (
+  .add('with some highlighted dates', () => (
     <SingleDatePickerWrapper
       isDayHighlighted={day1 => datesList.some(day2 => isSameDay(day1, day2))}
       autoFocus
     />
   ))
-  .addWithInfo('blocks fridays', () => (
+  .add('blocks fridays', () => (
     <SingleDatePickerWrapper
-      isDayBlocked={day => moment.weekdays(day.weekday()) === 'Friday'}
+      isDayBlocked={day => day.weekday() === 5}
       autoFocus
     />
   ))
-  .addWithInfo('with custom daily details', () => (
+  .add('with custom daily details', () => (
     <SingleDatePickerWrapper
       numberOfMonths={1}
       renderDayContents={day => day.format('ddd')}

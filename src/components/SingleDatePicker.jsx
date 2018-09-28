@@ -20,7 +20,7 @@ import SingleDatePickerInputController from './SingleDatePickerInputController';
 import DayPickerSingleDateController from './DayPickerSingleDateController';
 import CloseButton from './CloseButton';
 
-import DateObj from '../utils/DateObj';
+import { moment } from '../utils/DateObj';
 
 import {
   HORIZONTAL_ORIENTATION,
@@ -105,11 +105,11 @@ const defaultProps = {
   renderMonthElement: null,
   enableOutsideDays: false,
   isDayBlocked: () => false,
-  isOutsideRange: day => !isInclusivelyAfterDay(day, new DateObj()),
+  isOutsideRange: day => !isInclusivelyAfterDay(day, moment()),
   isDayHighlighted: () => {},
 
   // internationalization props
-  displayFormat: () => new DateObj().localeData().longDateFormat('L'),
+  displayFormat: () => moment().localeData().longDateFormat('L'),
   monthFormat: 'MMMM YYYY',
   weekDayFormat: 'dd',
   phrases: SingleDatePickerPhrases,

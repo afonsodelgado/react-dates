@@ -46,25 +46,25 @@ const TestCustomInfoPanel = () => (
 );
 
 storiesOf('DayPicker', module)
-  .addWithInfo('default', () => (
+  .add('default', () => (
     <DayPicker />
   ))
-  .addWithInfo('with custom day size', () => (
+  .add('with custom day size', () => (
     <DayPicker daySize={50} />
   ))
-  .addWithInfo('single month', () => (
+  .add('single month', () => (
     <DayPicker numberOfMonths={1} />
   ))
-  .addWithInfo('3 months', () => (
+  .add('3 months', () => (
     <DayPicker numberOfMonths={3} />
   ))
-  .addWithInfo('vertical', () => (
+  .add('vertical', () => (
     <DayPicker
       numberOfMonths={2}
       orientation={VERTICAL_ORIENTATION}
     />
   ))
-  .addWithInfo('vertically scrollable with 12 months', () => (
+  .add('vertically scrollable with 12 months', () => (
     <div
       style={{
         height: 568,
@@ -77,32 +77,32 @@ storiesOf('DayPicker', module)
       />
     </div>
   ))
-  .addWithInfo('vertical with custom day size', () => (
+  .add('vertical with custom day size', () => (
     <DayPicker
       numberOfMonths={2}
       orientation={VERTICAL_ORIENTATION}
       daySize={50}
     />
   ))
-  .addWithInfo('vertical with custom height', () => (
+  .add('vertical with custom height', () => (
     <DayPicker
       numberOfMonths={2}
       orientation={VERTICAL_ORIENTATION}
       verticalHeight={568}
     />
   ))
-  .addWithInfo('with custom arrows', () => (
+  .add('with custom arrows', () => (
     <DayPicker
       navPrev={<TestPrevIcon />}
       navNext={<TestNextIcon />}
     />
   ))
-  .addWithInfo('with custom details', () => (
+  .add('with custom details', () => (
     <DayPicker
       renderDayContents={day => (day.day() % 6 === 5 ? '😻' : day.format('D'))}
     />
   ))
-  .addWithInfo('vertical with fixed-width container', () => (
+  .add('vertical with fixed-width container', () => (
     <div style={{ width: '400px' }}>
       <DayPicker
         numberOfMonths={2}
@@ -110,23 +110,23 @@ storiesOf('DayPicker', module)
       />
     </div>
   ))
-  .addWithInfo('with info panel', () => (
+  .add('with info panel', () => (
     <DayPicker
       renderCalendarInfo={() => (
         <TestCustomInfoPanel />
       )}
     />
   ))
-  .addWithInfo('with custom week day format', () => (
+  .add('with custom week day format', () => (
     <DayPicker
       weekDayFormat="ddd"
     />
   ))
-  .addWithInfo('with no animation', () => (
+  .add('with no animation', () => (
     <DayPicker
       transitionDuration={0}
     />
   ))
-  .addWithInfo('noBorder', () => (
+  .add('noBorder', () => (
     <DayPicker noBorder />
   ));

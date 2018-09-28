@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import moment from 'moment';
+import { moment } from '../src/utils/DateObj';
 
 import PresetDateRangePicker from '../examples/PresetDateRangePicker';
 
@@ -40,7 +40,7 @@ const presets = [{
 
 storiesOf('PresetDateRangePicker', module)
   .addDecorator(InfoPanelDecorator(presetDateRangePickerControllerInfo))
-  .addWithInfo('default', () => (
+  .add('default', () => (
     <PresetDateRangePicker
       presets={presets}
       autoFocus
